@@ -26,4 +26,9 @@ else
   exit 1
 fi
 
-0desktop $APP_URI
+if [ -n "$DISPLAY" ]; then
+  0desktop $APP_URI
+else
+  0install add $APP_NAME $APP_URI
+  echo "Created command-line alias '$APP_NAME'. Can be removed with '0install destroy $APP_NAME'."
+fi
