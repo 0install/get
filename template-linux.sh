@@ -1,7 +1,8 @@
 #!/bin/sh
 
-APP_NAME = "--------------------AppName--------------------"
-APP_URI = "----------------------------------------AppUri----------------------------------------"
+# Constants
+APP_NAME="--------------------AppName--------------------"
+APP_URI="----------------------------------------AppUri----------------------------------------"
 
 echo "This will first install Zero Install using your native package manager and then install $APP_NAME"
 pause
