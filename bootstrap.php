@@ -2,7 +2,6 @@
 /* Generates an application-tailored Zero Install bootstrap-loader. */
 
 // Constants
-$template_file = "template-windows.exe";
 $placeholder_app_name = "--------------------AppName--------------------";
 $placeholder_app_uri = "----------------------------------------AppUri----------------------------------------";
 
@@ -16,6 +15,11 @@ if (strlen($app_name) > strlen($placeholder_app_name)) die("name is too long!");
 if (strlen($app_uri) == 0) die("uri is missing!");
 if (strlen($app_uri) > strlen($placeholder_app_uri)) die("uri is too long!");
 if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
+
+// Detect platform
+if (preg_match('/linux/i', $_SERVER['HTTP_USER_AGENT'])) $template_file = "template-windows.sh";
+elseif (preg_match('/windows|win32/i', $_SERVER['HTTP_USER_AGENT'])) $template_file = "template-windows.exe";
+else die("Platform not supported!");
 
 // Load template data
 $template_data = file_get_contents($template_file);
