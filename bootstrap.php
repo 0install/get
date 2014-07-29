@@ -37,7 +37,7 @@ switch ($platform) {
 		// Output data
 		header("Content-Type: text/x-shellscript");
 		header("Content-Length: ".strlen($template_data));
-		header('Content-Disposition: attachment; filename="install-'.$app_name.'.sh"', false);
+		header('Content-Disposition: attachment; filename="install-'.str_replace(' ', '-', strtolower($app_name)).'.sh"', false);
 		echo $template_data;
 		break;
 
