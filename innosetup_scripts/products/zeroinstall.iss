@@ -13,7 +13,7 @@ var
 begin
 	RegQueryStringValue(HKCU, 'Software\Zero Install', 'InstallLocation', installLocationCurrentUser);
 	RegQueryStringValue(HKLM, 'Software\Zero Install', 'InstallLocation', installLocationLocalMachine);
-	if (installLocationCurrentUser = '') and (installLocationLocalMachine = '') then
+	if (not FileExists(installLocationCurrentUser + '\0install-win.exe') and not FileExists(installLocationLocalMachine + '\0install-win.exe')) then
 		AddProduct('zero-install-per-user.exe', '/silent /norestart',
 			CustomMessage('zeroinstall_title'),
 			CustomMessage('zeroinstall_size'),
