@@ -27,8 +27,8 @@ Compression=lzma/ultra
 SolidCompression=true
 
 [Languages]
-Name: de; MessagesFile: compiler:Languages\German.isl
 Name: en; MessagesFile: compiler:Default.isl
+Name: de; MessagesFile: compiler:Languages\German.isl
 
 [Files]
 Source: AppParams.ini; Flags: dontcopy nocompression dontverifychecksum
