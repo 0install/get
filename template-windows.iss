@@ -34,8 +34,8 @@ Name: de; MessagesFile: compiler:Languages\German.isl
 Source: AppParams.ini; Flags: dontcopy nocompression dontverifychecksum
 
 [Run]
-Filename: {reg:HKCU\Software\Zero Install,InstallLocation|{reg:HKLM\Software\Zero Install,InstallLocation}}\0install-win.exe; Parameters: "integrate {code:GetAppParam|Uri}"; StatusMsg: "{cm:integrate_0install}"; Flags: runasoriginaluser
-Filename: {reg:HKCU\Software\Zero Install,InstallLocation|{reg:HKLM\Software\Zero Install,InstallLocation}}\0install-win.exe; Parameters: "run {code:GetAppParam|Uri}"; Description: {cm:LaunchProgram,{code:GetAppParam|Name}}; Flags: nowait postinstall runasoriginaluser skipifsilent
+Filename: {code:GetZeroInstallLocation}\0install-win.exe; Parameters: "integrate {code:GetAppParam|Uri}"; StatusMsg: "{cm:integrate_0install}"; Flags: runasoriginaluser
+Filename: {code:GetZeroInstallLocation}\0install-win.exe; Parameters: "run {code:GetAppParam|Uri}"; Description: {cm:LaunchProgram,{code:GetAppParam|Name}}; Flags: nowait postinstall runasoriginaluser skipifsilent
 
 [Code]
 function GetAppParam(Param: String): String;
