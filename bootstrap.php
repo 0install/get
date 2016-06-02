@@ -2,19 +2,20 @@
 /* Generates an application-tailored Zero Install bootstrap-loader. */
 
 // Constants
-$placeholder_app_name = "--------------------AppName--------------------";
-$placeholder_app_uri = "----------------------------------------AppUri----------------------------------------";
+$placeholder_app_name = "----------------------------------------AppName----------------------------------------";
+$placeholder_app_uri = "--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------";
+$placeholder_app_mode = "--------------------AppMode--------------------";
 
 // Get application parameters
 $app_name = $_GET['name'];
 $app_uri = $_GET['uri'];
+$app_mode = $_GET['mode'];
 
 // Validate application parameters
 if (strlen($app_name) == 0) die("name is missing!");
-if (strlen($app_name) > strlen($placeholder_app_name)) die("name is too long!");
 if (strlen($app_uri) == 0) die("uri is missing!");
-if (strlen($app_uri) > strlen($placeholder_app_uri)) die("uri is too long!");
 if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
+if ($app_mode != 'integrate') $app_mode = 'run';
 
 // Detect platform
 if (!empty($_GET['platform'])) $platform = $_GET['platform'];
@@ -28,7 +29,7 @@ error_reporting(0);
 switch ($platform) {
 	case "linux":
 		// Load template file
-		$template_data = file_get_contents("template-linux.sh");
+		$template_data = file_get_contents("$app_mode.sh.template");
 
 		// Replace placeholder fields
 		$template_data = str_replace($placeholder_app_name, $app_name, $template_data);
@@ -37,22 +38,25 @@ switch ($platform) {
 		// Output data
 		header("Content-Type: text/x-shellscript");
 		header("Content-Length: ".strlen($template_data));
-		header('Content-Disposition: attachment; filename="install-'.str_replace(' ', '-', strtolower($app_name)).'.sh"', false);
+		header('Content-Disposition: attachment; filename="'.$app_mode.'-'.str_replace(' ', '-', strtolower($app_name)).'.sh"', false);
 		echo $template_data;
 		break;
 
 	case "windows":
 		// Load template file
-		$template_data = file_get_contents("template-windows.exe");
+		$template_data = file_get_contents("zero-install.exe");
 
 		// Replace placeholder fields, preserve original file length
+		if (strlen($app_name) > strlen($placeholder_app_name)) die("name is too long!");
+		if (strlen($app_uri) > strlen($placeholder_app_uri)) die("uri is too long!");
 		$template_data = str_replace($placeholder_app_name, str_pad($app_name, strlen($placeholder_app_name)), $template_data);
 		$template_data = str_replace($placeholder_app_uri, str_pad($app_uri, strlen($placeholder_app_uri)), $template_data);
+		$template_data = str_replace($placeholder_app_mode, str_pad($app_mode, strlen($placeholder_app_mode)), $template_data);
 
 		// Output data
 		header("Content-Type: application/octet-stream");
-		header("Content-Length: ".filesize("template-windows.exe"));
-		header('Content-Disposition: attachment; filename="Install '.$app_name.'.exe"', false);
+		header("Content-Length: ".filesize("zero-install.exe"));
+		header('Content-Disposition: attachment; filename="'.$app_mode.' '.$app_name.'.exe"', false);
 		echo $template_data;
 		break;
 
