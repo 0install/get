@@ -18,5 +18,5 @@ The script contains placeholders that are replaced by the PHP script.
 
 Windows
 =======
-Download the Zero Install for Windows Bootstrap executable from http://0install.de/files/zero-install.exe and place it in this directory.
-The executable contains placeholders that are replaced by the PHP script.
+Clone https://github.com/0install/0install-win, run `build.cmd` and copy `build\Release20\Bootstrap\template.exe` into this directory.
+This executable contains placeholders that are replaced by the PHP script.
