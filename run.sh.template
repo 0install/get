@@ -5,7 +5,7 @@ APP_NAME="----------------------------------------AppName-----------------------
 APP_URI="--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------"
 
 if command -v 0install > /dev/null; then
-  #read -p "This will run $APP_NAME using Zero Install. Press ENTER to continue."
+  echo "This will run $APP_NAME using Zero Install."
 elif command -v emerge > /dev/null; then
   read -p "This will first install Zero Install using emerge and then run $APP_NAME using Zero Install. Press ENTER to continue."
   emerge zeroinstall-injector
@@ -24,6 +24,13 @@ elif command -v yum > /dev/null; then
 else
   echo "Zero Install is not installed on this system. Please visit http://0install.net/install-linux.html for instructions."
   exit 1
+fi
+
+CONTENT_DIR=`dirname $0`/content
+if [ -d "$CONTENT_DIR" ]; then
+  echo "Importing bundled content..."
+  for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
+  for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
 fi
 
 0install run $APP_URI
