@@ -33,4 +33,4 @@ if [ -d "$CONTENT_DIR" ]; then
   for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
 fi
 
-0install run $APP_URI
+0install run $APP_URI "$@"
