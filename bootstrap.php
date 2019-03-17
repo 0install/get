@@ -44,7 +44,7 @@ switch ($platform) {
 
 	case "windows":
 		// Load template file
-		$template_data = file_get_contents("template.exe");
+		$template_data = file_get_contents("zero-install.exe");
 
 		// Replace placeholder fields, preserve original file length
 		if (strlen($app_name) > strlen($placeholder_app_name)) die("name is too long!");
@@ -55,7 +55,7 @@ switch ($platform) {
 
 		// Output data
 		header("Content-Type: application/octet-stream");
-		header("Content-Length: ".filesize("template.exe"));
+		header("Content-Length: ".filesize("zero-install.exe"));
 		header('Content-Disposition: attachment; filename="'.$app_mode.' '.$app_name.'.exe"', false);
 		echo $template_data;
 		break;
