@@ -55,7 +55,7 @@
             </div>
             <div class="card-body tab-body" id="linux-generic-tab">
               <p>
-                <a class="btn btn-primary" href="https://downloads.sourceforge.net/zero-install/0install-linux-x86_64-2.17.tar.bz2"><i class="fas fa-download"></i> Download</a>
+                <a class="btn btn-primary" href="0install-linux-x86_64-latest.tar.bz2"><i class="fas fa-download"></i> Download</a>
                 <a class="btn btn-outline-primary" href="http://0install.net/tools/0install.xml"><i class="fas fa-history"></i> Specific version</a>
               </p>
               <p>For scripting:</p>
@@ -65,7 +65,7 @@
                   <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
                 </h5>
                 <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -L https://downloads.sourceforge.net/zero-install/0install-linux-x86_64-2.17.tar.bz2 | tar xj
+                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -L https://get.0install.net/0install-linux-x86_64-2.17.tar.bz2 | tar xj
 sudo 0install-linux-x86_64-2.17/install.sh local</textarea>
                 </code>
               </div>
@@ -159,8 +159,8 @@ eval $(opam config env)</textarea>
             <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework 4.5 or newer</a> and <a href="https://support.microsoft.com/en-us/help/3140245/">TLS 1.2 support</a> installed.
           </div>
           <p>
-            <a class="btn btn-primary" href="https://0install.de/files/zero-install.exe"><i class="fas fa-download"></i> Download</a>
-            <a class="btn btn-outline-primary" href="https://0install.de/files/zero-install.zip"><i class="far fa-file-archive"></i> ZIP version</a>
+            <a class="btn btn-primary" href="zero-install.exe"><i class="fas fa-download"></i> Download</a>
+            <a class="btn btn-outline-primary" href="zero-install.zip"><i class="far fa-file-archive"></i> ZIP version</a>
           </p>
           <p>For scripting:</p>
           <div class="alert alert-primary">
@@ -169,7 +169,7 @@ eval $(opam config env)</textarea>
               <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('windows-legacy-powershell');"><i class="far fa-copy"></i></button>
             </h5>
             <code>
-              <textarea readonly style="resize: none;" class="form-control-plaintext" id="windows-legacy-powershell">Invoke-WebRequest https://0install.de/files/0install.exe -OutFile 0install.exe
+              <textarea readonly style="resize: none;" class="form-control-plaintext" id="windows-legacy-powershell">Invoke-WebRequest https://get.0install.net/0install.exe -OutFile 0install.exe
 .\0install.exe self deploy</textarea>
             </code>
           </div>
@@ -178,7 +178,7 @@ eval $(opam config env)</textarea>
 
         <div class="card-body tab-body" id="mac-tab">
           <p>
-            <a class="btn btn-primary" href="https://downloads.sourceforge.net/project/zero-install/0install/2.8/ZeroInstall.pkg"><i class="fas fa-download"></i> Download</a>
+            <a class="btn btn-primary" href="ZeroInstall.pkg"><i class="fas fa-download"></i> Download</a>
           </p>
           <a href="https://docs.0install.net/details/macos/">Learn more...</a>
         </div>
