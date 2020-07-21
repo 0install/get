@@ -49,6 +49,6 @@ $(window).bind('hashchange', updateTabs);
 $(function() {
     updateTabs();
     if (is('Windows NT 6.2') || is('Windows NT 6.3') || is('Windows NT 10.0')) {
-        $('#windows-legacy').hide();
+        $('#windows-legacy-alert').hide();
     }
 });
