@@ -2,20 +2,19 @@
 /* Generates an application-tailored Zero Install bootstrap-loader. */
 
 // Constants
-$placeholder_app_name = "----------------------------------------AppName----------------------------------------";
-$placeholder_app_uri = "--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------";
 $placeholder_app_mode = "--------------------AppMode--------------------";
+$placeholder_app_name = "----------------------------------------AppName----------------------------------------";
+$placeholder_app_alias = "----------------------------------------AppAlias----------------------------------------";
+$placeholder_app_uri = "--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------";
 
-// Get application parameters
-$app_name = $_GET['name'];
-$app_uri = $_GET['uri'];
-$app_mode = $_GET['mode'];
-
-// Validate application parameters
+// Sanitize inputs
+$app_mode = ($_GET['mode'] == 'integrate') ? 'integrate' : 'run';
+$app_name = preg_replace('/[^A-Za-z0-9\.,\-_ ]/', '', $_GET['name']);
 if (strlen($app_name) == 0) die("name is missing!");
+$app_alias = str_replace(' ', '-', strtolower($app_name));
+$app_uri = $_GET['uri'];
 if (strlen($app_uri) == 0) die("uri is missing!");
 if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
-if ($app_mode != 'integrate') $app_mode = 'run';
 
 // Detect platform
 if (!empty($_GET['platform'])) $platform = $_GET['platform'];
@@ -32,13 +31,13 @@ switch ($platform) {
 		$template_data = file_get_contents("$app_mode.sh.template");
 
 		// Replace placeholder fields
-		$template_data = str_replace($placeholder_app_name, $app_name, $template_data);
 		$template_data = str_replace($placeholder_app_uri, $app_uri, $template_data);
+		$template_data = str_replace($placeholder_app_alias, $app_alias, $template_data);
 
 		// Output data
 		header("Content-Type: text/x-shellscript");
 		header("Content-Length: ".strlen($template_data));
-		header('Content-Disposition: attachment; filename="'.$app_mode.'-'.str_replace(' ', '-', strtolower($app_name)).'.sh"', false);
+		header('Content-Disposition: attachment; filename="'.$app_mode.'-'.$app_alias.'.sh"', false);
 		echo $template_data;
 		break;
 

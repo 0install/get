@@ -1,36 +1,31 @@
-#!/bin/bash
-
-# Constants
-APP_NAME="----------------------------------------AppName----------------------------------------"
+#!/bin/sh
+set -e
+VERSION=latest
 APP_URI="--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------"
+CONTENT_DIR=`dirname $0`/content
 
-if command -v 0install > /dev/null; then
-  echo "This will run $APP_NAME using Zero Install."
-elif command -v emerge > /dev/null; then
-  read -p "This will first install Zero Install using emerge and then run $APP_NAME using Zero Install. Press ENTER to continue."
-  emerge zeroinstall-injector
-elif command -v apt-get > /dev/null; then
-  read -p "This will first install Zero Install using apt-get and then run $APP_NAME using Zero Install. Press ENTER to continue."
-  apt-get install zeroinstall-injector
-elif command -v yast > /dev/null; then
-  read -p "This will first install Zero Install using yast and then run $APP_NAME using Zero Install. Press ENTER to continue."
-  yast -i zeroinstall-injector
-elif command -v urpmi > /dev/null; then
-  read -p "This will first install Zero Install using urpmi and then run $APP_NAME using Zero Install. Press ENTER to continue."
-  urpmi zeroinstall-injector
-elif command -v yum > /dev/null; then
-  read -p "This will first install Zero Install using yum and then run $APP_NAME using Zero Install. Press ENTER to continue."
-  yum install zeroinstall-injector
+download_0install() {
+  echo "Downloading 0install..." >&2
+  DOWNLOAD_DIR=$(mktemp --directory)
+  trap cleanup EXIT
+  curl --silent --location https://get.0install.net/0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-$VERSION.tar.bz2 | tar xj --strip-components=1 --directory=$DOWNLOAD_DIR
+}
+
+cleanup() {
+  rm -rf $DOWNLOAD_DIR
+}
+
+if command -v 0install > /dev/null 2> /dev/null; then
+  ZEROINSTALL=0install
 else
-  echo "Zero Install is not installed on this system. Please visit http://0install.net/install-linux.html for instructions."
-  exit 1
+  download_0install
+  ZEROINSTALL=$DOWNLOAD_DIR/files/0install
 fi
 
-CONTENT_DIR=`dirname $0`/content
 if [ -d "$CONTENT_DIR" ]; then
   echo "Importing bundled content..."
-  for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
-  for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
+  for f in "$CONTENT_DIR/*.xml"; do $ZEROINSTALL import "$f"; done
+  for f in "$CONTENT_DIR/*.tbz2"; do $ZEROINSTALL store add $(basename "$f" .tbz2) "$f"; done
 fi
 
-0install run $APP_URI "$@"
+$ZEROINSTALL run $APP_URI "$@"

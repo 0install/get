@@ -1,32 +1,26 @@
-#!/bin/bash
-
-# Constants
-APP_NAME="----------------------------------------AppName----------------------------------------"
+#!/bin/sh
+set -e
+VERSION=latest
 APP_URI="--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------"
+APP_ALIAS="----------------------------------------AppAlias----------------------------------------"
+CONTENT_DIR=`dirname $0`/content
 
-if command -v 0install > /dev/null; then
-  read -p "This will integrate $APP_NAME using Zero Install. Press ENTER to continue."
-elif command -v emerge > /dev/null; then
-  read -p "This will first install Zero Install using emerge and then integrate $APP_NAME using Zero Install. Press ENTER to continue."
-  emerge zeroinstall-injector
-elif command -v apt-get > /dev/null; then
-  read -p "This will first install Zero Install using apt-get and then integrate $APP_NAME using Zero Install. Press ENTER to continue."
-  apt-get install zeroinstall-injector
-elif command -v yast > /dev/null; then
-  read -p "This will first install Zero Install using yast and then integrate $APP_NAME using Zero Install. Press ENTER to continue."
-  yast -i zeroinstall-injector
-elif command -v urpmi > /dev/null; then
-  read -p "This will first install Zero Install using urpmi and then integrate $APP_NAME using Zero Install. Press ENTER to continue."
-  urpmi zeroinstall-injector
-elif command -v yum > /dev/null; then
-  read -p "This will first install Zero Install using yum and then integrate $APP_NAME using Zero Install. Press ENTER to continue."
-  yum install zeroinstall-injector
-else
-  echo "Zero Install is not installed on this system. Please visit http://0install.net/install-linux.html for instructions."
-  exit 1
+download_0install() {
+  echo "Downloading 0install..." >&2
+  DOWNLOAD_DIR=$(mktemp --directory)
+  trap cleanup EXIT
+  curl --silent --location https://get.0install.net/0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-$VERSION.tar.bz2 | tar xj --strip-components=1 --directory=$DOWNLOAD_DIR
+}
+
+cleanup() {
+  rm -rf $DOWNLOAD_DIR
+}
+
+if ! command -v 0install > /dev/null 2> /dev/null; then
+  download_0install
+  $DOWNLOAD_DIR/install.sh home
 fi
 
-CONTENT_DIR=`dirname $0`/content
 if [ -d "$CONTENT_DIR" ]; then
   echo "Importing bundled content..."
   for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
@@ -36,6 +30,6 @@ fi
 if [ -n "$DISPLAY" ]; then
   0desktop $APP_URI
 else
-  0install add $APP_NAME $APP_URI
-  echo "Created command-line alias '$APP_NAME'. Can be removed with '0install destroy $APP_NAME'."
+  0install add $APP_ALIAS $APP_URI
+  echo "Created command-line alias '$APP_ALIAS'. Can be removed with '0install destroy $APP_ALIAS'."
 fi
