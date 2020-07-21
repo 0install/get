@@ -65,8 +65,8 @@
                   <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
                 </h5>
                 <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -L https://get.0install.net/0install-linux-x86_64-2.17.tar.bz2 | tar xj
-sudo 0install-linux-x86_64-2.17/install.sh local</textarea>
+                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
+./0install.sh</textarea>
                 </code>
               </div>
               <a href="https://docs.0install.net/details/linux/#generic-binaries">Learn more...</a>
@@ -170,7 +170,7 @@ eval $(opam config env)</textarea>
             </h5>
             <code>
               <textarea readonly style="resize: none;" class="form-control-plaintext" id="windows-legacy-powershell">Invoke-WebRequest https://get.0install.net/0install.exe -OutFile 0install.exe
-.\0install.exe self deploy</textarea>
+.\0install.exe</textarea>
             </code>
           </div>
           <a href="https://docs.0install.net/details/windows/">Learn more...</a>
