@@ -1,42 +1,42 @@
 #!/bin/sh
 set -e
-VERSION=latest
-
-download_0install() {
-  echo "Downloading 0install..." >&2
-  DOWNLOAD_DIR=$(mktemp --directory)
-  trap cleanup EXIT
-  curl --silent --location https://get.0install.net/0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-$VERSION.tar.bz2 | tar xj --strip-components=1 --directory=$DOWNLOAD_DIR
-}
-
-cleanup() {
-  rm -rf $DOWNLOAD_DIR
-}
 
 if [ "$#" -eq 0 ]; then
-  echo "This script downloads and runs 0install."
-  echo ""
-  echo "To install to /usr/local:"
-  echo "./0install.sh install local"
-  echo ""
-  echo "To install to your home directory:"
-  echo "./0install.sh install home"
-  echo ""
-  echo "To run 0install commands without installing 0install itself:"
-  echo "./0install.sh --help"
-  echo "./0install.sh COMMAND [OPTIONS]"
-  exit 1
+    echo "This script runs 0install from your PATH or downloads it on-demand."
+    echo ""
+    echo "To run 0install commands without adding 0install to your PATH:"
+    echo "./0install.sh --help"
+    echo "./0install.sh COMMAND [OPTIONS]"
+    echo ""
+    echo "To install to /usr/local:"
+    echo "sudo ./0install.sh install local"
+    echo ""
+    echo "To install to your home directory:"
+    echo "./0install.sh install home"
+    exit 1
 fi
 
+download() {
+    zeroinstall_release=0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}
+    download_dir=~/.cache/0install.net/$zeroinstall_release
+
+    if [ ! -f $download_dir/files/0install ]; then
+        echo "Downloading 0install..." >&2
+        rm -rf $download_dir
+        mkdir -p $download_dir
+        curl -sSL https://get.0install.net/$zeroinstall_release.tar.bz2 | tar xj --strip-components 1 --directory $download_dir
+    fi
+}
+
 if [ "$1" = "install" ]; then
-  download_0install
-  shift 1
-  $DOWNLOAD_DIR/install.sh "$@"
+    download
+    shift 1
+    $download_dir/install.sh "$@"
 else
-  if command -v 0install > /dev/null 2> /dev/null; then
-    0install "$@"
-  else
-    download_0install
-    $DOWNLOAD_DIR/files/0install "$@"
-  fi
+    if command -v 0install > /dev/null 2> /dev/null; then
+        0install "$@"
+    else
+        download
+        $download_dir/files/0install "$@"
+    fi
 fi
