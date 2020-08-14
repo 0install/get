@@ -4,28 +4,29 @@ VERSION=latest
 APP_URI="--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------"
 CONTENT_DIR=`dirname $0`/content
 
-download_0install() {
-  echo "Downloading 0install..." >&2
-  DOWNLOAD_DIR=$(mktemp --directory)
-  trap cleanup EXIT
-  curl --silent --location https://get.0install.net/0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-$VERSION.tar.bz2 | tar xj --strip-components=1 --directory=$DOWNLOAD_DIR
-}
+download() {
+    zeroinstall_release=0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}
+    download_dir=~/.cache/0install.net/$zeroinstall_release
 
-cleanup() {
-  rm -rf $DOWNLOAD_DIR
+    if [ ! -f $download_dir/files/0install ]; then
+        echo "Downloading 0install..." >&2
+        rm -rf $download_dir
+        mkdir -p $download_dir
+        curl -sSL https://get.0install.net/$zeroinstall_release.tar.bz2 | tar xj --strip-components 1 --directory $download_dir
+    fi
 }
 
 if command -v 0install > /dev/null 2> /dev/null; then
-  ZEROINSTALL=0install
+    ZEROINSTALL=0install
 else
-  download_0install
-  ZEROINSTALL=$DOWNLOAD_DIR/files/0install
+    download
+    ZEROINSTALL=$DOWNLOAD_DIR/files/0install
 fi
 
 if [ -d "$CONTENT_DIR" ]; then
-  echo "Importing bundled content..."
-  for f in "$CONTENT_DIR/*.xml"; do $ZEROINSTALL import "$f"; done
-  for f in "$CONTENT_DIR/*.tbz2"; do $ZEROINSTALL store add $(basename "$f" .tbz2) "$f"; done
+    echo "Importing bundled content..."
+    for f in "$CONTENT_DIR/*.xml"; do $ZEROINSTALL import "$f"; done
+    for f in "$CONTENT_DIR/*.tbz2"; do $ZEROINSTALL store add $(basename "$f" .tbz2) "$f"; done
 fi
 
 $ZEROINSTALL run $APP_URI "$@"

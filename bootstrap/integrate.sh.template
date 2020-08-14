@@ -5,31 +5,32 @@ APP_URI="-----------------------------------------------------------------------
 APP_ALIAS="----------------------------------------AppAlias----------------------------------------"
 CONTENT_DIR=`dirname $0`/content
 
-download_0install() {
-  echo "Downloading 0install..." >&2
-  DOWNLOAD_DIR=$(mktemp --directory)
-  trap cleanup EXIT
-  curl --silent --location https://get.0install.net/0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-$VERSION.tar.bz2 | tar xj --strip-components=1 --directory=$DOWNLOAD_DIR
-}
+download() {
+    zeroinstall_release=0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}
+    download_dir=~/.cache/0install.net/$zeroinstall_release
 
-cleanup() {
-  rm -rf $DOWNLOAD_DIR
+    if [ ! -f $download_dir/files/0install ]; then
+        echo "Downloading 0install..." >&2
+        rm -rf $download_dir
+        mkdir -p $download_dir
+        curl -sSL https://get.0install.net/$zeroinstall_release.tar.bz2 | tar xj --strip-components 1 --directory $download_dir
+    fi
 }
 
 if ! command -v 0install > /dev/null 2> /dev/null; then
-  download_0install
+  download
   $DOWNLOAD_DIR/install.sh home
 fi
 
 if [ -d "$CONTENT_DIR" ]; then
-  echo "Importing bundled content..."
-  for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
-  for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
+    echo "Importing bundled content..."
+    for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
+    for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
 fi
 
 if [ -n "$DISPLAY" ]; then
-  0desktop $APP_URI
+    0desktop $APP_URI
 else
-  0install add $APP_ALIAS $APP_URI
-  echo "Created command-line alias '$APP_ALIAS'. Can be removed with '0install destroy $APP_ALIAS'."
+    0install add $APP_ALIAS $APP_URI
+    echo "Created command-line alias '$APP_ALIAS'. Can be removed with '0install destroy $APP_ALIAS'."
 fi
