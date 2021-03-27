@@ -163,8 +163,11 @@ eval $(opam config env)</textarea>
         </div>
 
         <div class="card-body tab-body" id="windows-tab">
-          <div class="alert alert-warning" id="windows-legacy-alert">
-            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework 4.5 or newer</a> and <a href="https://support.microsoft.com/en-us/help/3140245/">TLS 1.2 support</a> installed.
+          <div class="alert alert-warning" id="windows-tls-notice">
+            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://support.microsoft.com/en-us/help/3140245/">TLS 1.2 support</a> installed.
+          </div>
+          <div class="alert alert-warning" id="windows-netframework-notice">
+            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework 4.7.2 or newer</a> installed.
           </div>
           <p>
             <a class="btn btn-primary" href="zero-install.exe"><i class="fas fa-download"></i> Download</a>
