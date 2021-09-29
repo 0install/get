@@ -2,7 +2,7 @@ RewriteEngine On
 RewriteBase /
 
 # Windows bootstrapper
-RewriteRule ^((0install|zero\-install)\.(zip|exe))$ https://github.com/0install/0install-win/releases/download/2.18.6/$1 [R=302]
+RewriteRule ^((0install|zero\-install)\.(zip|exe))$ https://github.com/0install/0install-win/releases/download/2.20.0/$1 [R=302]
 
 # Linux latest version
 RewriteRule ^0install-linux-([a-z_\d]*)-latest\.tar\.bz2$ 0install-linux-$1-2.17.tar.bz2 [R=302]
