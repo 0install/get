@@ -19,6 +19,7 @@ if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
 // Detect platform
 if (!empty($_GET['platform'])) $platform = $_GET['platform'];
 elseif (preg_match('/linux/i', $_SERVER['HTTP_USER_AGENT'])) $platform = "linux";
+elseif (preg_match('/macintosh/i', $_SERVER['HTTP_USER_AGENT'])) $platform = "macos";
 elseif (preg_match('/windows|win32/i', $_SERVER['HTTP_USER_AGENT'])) $platform = "windows";
 else die("Unknown platform!");
 
@@ -27,6 +28,7 @@ error_reporting(0);
 
 switch ($platform) {
 	case "linux":
+	case "macos":
 		// Load template file
 		$template_data = file_get_contents("$app_mode.sh.template");
 
