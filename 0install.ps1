@@ -1,5 +1,24 @@
 $ErrorActionPreference = "Stop"
 
+function Download-ZeroInstall {
+    $dir = "$env:LOCALAPPDATA\0install.net\bootstrapper"
+    $file = "$dir\0install.exe"
+    if (!(Test-Path $file)) {
+        mkdir -Force $dir | Out-Null
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Tls11,Tls12'
+        Invoke-WebRequest "https://get.0install.net/0install.exe" -OutFile $file
+    }
+    return $file
+}
+
+function Run-ZeroInstall {
+    if (Get-Command 0install -ErrorAction SilentlyContinue) {
+        0install @args
+    } else {
+        . $(Download-ZeroInstall) @args
+    }
+}
+
 if ($args.Count -eq 0) {
     echo "This script runs 0install from your PATH or downloads it on-demand."
     echo ""
@@ -11,21 +30,6 @@ if ($args.Count -eq 0) {
     echo ""
     echo "To deploy 0install to your machine:"
     echo ".\0install.ps1 self deploy --machine"
-    exit 1
-}
-
-function download {
-    $downloadDir = "$env:LOCALAPPDATA\0install.net\bootstrapper"
-    if (!(Test-Path "$downloadDir\0install.exe")) {
-        mkdir -Force $downloadDir | Out-Null
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Tls11,Tls12'
-        Invoke-WebRequest "https://get.0install.net/0install.exe" -OutFile "$downloadDir\0install.exe"
-    }
-    return $downloadDir
-}
-
-if (Get-Command 0install -ErrorAction SilentlyContinue) {
-    0install @args
 } else {
-    . "$(download)\0install.exe" @args
+    Run-ZeroInstall @args
 }
