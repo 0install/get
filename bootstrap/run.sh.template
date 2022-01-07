@@ -20,7 +20,7 @@ if command -v 0install > /dev/null 2> /dev/null; then
     ZEROINSTALL=0install
 else
     download
-    ZEROINSTALL=$DOWNLOAD_DIR/files/0install
+    ZEROINSTALL=$download_dir/files/0install
 fi
 
 if [ -d "$CONTENT_DIR" ]; then

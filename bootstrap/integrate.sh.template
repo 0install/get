@@ -19,7 +19,7 @@ download() {
 
 if ! command -v 0install > /dev/null 2> /dev/null; then
   download
-  $DOWNLOAD_DIR/install.sh home
+  $download_dir/install.sh home
 fi
 
 if [ -d "$CONTENT_DIR" ]; then
