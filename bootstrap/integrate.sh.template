@@ -4,6 +4,7 @@ VERSION=latest
 APP_URI="--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------"
 APP_ALIAS="----------------------------------------AppAlias----------------------------------------"
 CONTENT_DIR=`dirname $0`/content
+ZERO_DIR=~/bin
 
 download() {
     zeroinstall_release=0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}
@@ -24,13 +25,13 @@ fi
 
 if [ -d "$CONTENT_DIR" ]; then
     echo "Importing bundled content..."
-    for f in "$CONTENT_DIR/*.xml"; do 0install import "$f"; done
-    for f in "$CONTENT_DIR/*.tbz2"; do 0install store add $(basename "$f" .tbz2) "$f"; done
+    for f in "$CONTENT_DIR/*.xml"; do $ZERO_DIR/0install import "$f"; done
+    for f in "$CONTENT_DIR/*.tbz2"; do $ZERO_DIR/0install store add $(basename "$f" .tbz2) "$f"; done
 fi
 
 if [ -n "$DISPLAY" ]; then
-    0desktop $APP_URI
+    $ZERO_DIR/0desktop $APP_URI
 else
-    0install add $APP_ALIAS $APP_URI
+    $ZERO_DIR/0install add $APP_ALIAS $APP_URI
     echo "Created command-line alias '$APP_ALIAS'. Can be removed with '0install destroy $APP_ALIAS'."
 fi
