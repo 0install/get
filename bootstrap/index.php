@@ -2,19 +2,19 @@
 /* Generates an application-tailored Zero Install bootstrap-loader. */
 
 // Constants
-$placeholder_app_mode = "--------------------AppMode--------------------";
 $placeholder_app_name = "----------------------------------------AppName----------------------------------------";
 $placeholder_app_alias = "----------------------------------------AppAlias----------------------------------------";
 $placeholder_app_uri = "--------------------------------------------------------------------------------AppUri--------------------------------------------------------------------------------";
+$placeholder_integrate_args = "--------------------------------------------------------------------------------IntegrateArgs--------------------------------------------------------------------------------";
 
 // Sanitize inputs
-$app_mode = ($_GET['mode'] == 'integrate') ? 'integrate' : 'run';
 $app_name = preg_replace('/[^A-Za-z0-9\.,\-_ ]/', '', $_GET['name']);
 if (strlen($app_name) == 0) die("name is missing!");
 $app_alias = str_replace(' ', '-', strtolower($app_name));
 $app_uri = $_GET['uri'];
 if (strlen($app_uri) == 0) die("uri is missing!");
 if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
+$app_integrate = ($_GET['mode'] == 'integrate');
 
 // Detect platform
 if (!empty($_GET['platform'])) $platform = $_GET['platform'];
@@ -52,7 +52,9 @@ switch ($platform) {
 		if (strlen($app_uri) > strlen($placeholder_app_uri)) die("uri is too long!");
 		$template_data = str_replace($placeholder_app_name, str_pad($app_name, strlen($placeholder_app_name)), $template_data);
 		$template_data = str_replace($placeholder_app_uri, str_pad($app_uri, strlen($placeholder_app_uri)), $template_data);
-		$template_data = str_replace($placeholder_app_mode, str_pad($app_mode, strlen($placeholder_app_mode)), $template_data);
+		if ($app_integrate) {
+		  $template_data = str_replace($placeholder_integrate_args, str_pad("--no-download", strlen($placeholder_integrate_args)), $template_data);
+		}
 
 		// Output data
 		header("Content-Type: application/octet-stream");
