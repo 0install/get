@@ -13,5 +13,8 @@ RewriteRule ^0install-linux-([a-z_\d]+)-([0-9\.]+)\.tar\.bz2$ https://downloads.
 # macOS latest version
 RewriteRule ^0install-darwin-([a-z_\d]+)-latest\.tar\.bz2$ 0install-darwin-$1-2.16.tar.bz2 [R=302]
 
+# macOS x64-on-ARM emulation
+RewriteRule ^0install-darwin-arm64-([0-9\.]+)\.tar\.bz2$ 0install-darwin-x86_64-$1.tar.bz2 [R=302]
+
 # macOS package
 RewriteRule ^ZeroInstall\.pkg$ https://downloads.sourceforge.net/project/zero-install/0install/2.8/ZeroInstall.pkg [R=302]
