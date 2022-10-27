@@ -8,10 +8,10 @@ RewriteRule ^((0install|zero\-install)\.(zip|exe))$ https://github.com/0install/
 RewriteRule ^0install-win-([0-9\.]+)\.tar\.gz$ https://github.com/0install/0install-win/releases/download/$1/0install-win-$1.tar.gz [R=302]
 
 # Linux latest version
-RewriteRule ^0install-linux-([a-z_\d]+)-latest\.tar\.bz2$ 0install-linux-$1-2.17.tar.bz2 [R=302]
+RewriteRule ^0install-linux-([a-z_\d]+)-latest\.tar\.bz2$ 0install-linux-$1-2.18.tar.bz2 [R=302]
 
 # Linux tarballs
-RewriteRule ^0install-linux-([a-z_\d]+)-([0-9\.]+)\.tar\.bz2$ https://downloads.sourceforge.net/project/zero-install/0install/$2/0install-linux-$1-$2.tar.bz2 [R=302]
+RewriteRule ^0install-linux-([a-z_\d]+)-([0-9\.]+)\.tar\.bz2$ https://github.com/0install/0install/releases/download/v$2/0install-linux-$1-$2.tar.bz2 [R=302]
 
 # macOS latest version
 RewriteRule ^0install-darwin-([a-z_\d]+)-latest\.tar\.bz2$ 0install-darwin-$1-2.16.tar.bz2 [R=302]
