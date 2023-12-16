@@ -9,7 +9,7 @@ function detectOS() {
     if (is('SUSE')) { return 'linux-suse'; }
     if (is('Arch')) { return 'linux-arch'; }
     if (is('Linux')) { return 'linux-generic'; }
-    if (is('OS X')) { return 'mac'; }    
+    if (is('OS X')) { return 'mac-prebuilt'; }    
     if (is('Windows')) { return 'windows'; }
     return null;
 }
@@ -30,6 +30,7 @@ function updateTabs() {
     if (window.location.hash) {
         tabName = window.location.hash.slice(1);
         if (tabName == 'linux') { tabName = 'linux-generic'; }
+        if (tabName == 'mac') { tabName = 'mac-prebuilt'; }
     } else {
         tabName = detectOS();
         if (tabName == null) return;
