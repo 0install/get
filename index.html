@@ -198,8 +198,22 @@ eval $(opam config env)</textarea>
           <div class="card">
             <div class="card-header bg-white">
               <div class="nav nav-tabs card-header-tabs">
-                <a class="nav-item nav-link" href="#mac-prebuilt">Pre-built binaries</a>
                 <a class="nav-item nav-link" href="#mac-homebrew"><i class="fa fa-beer"></i> Homebrew</a>
+                <a class="nav-item nav-link" href="#mac-prebuilt">Pre-built binaries</a>
+              </div>
+            </div>
+            <div class="card-body tab-body" id="mac-homebrew-tab">
+              <p>
+                <a class="btn btn-primary" href="https://formulae.brew.sh/formula/zero-install">Formula</a>
+              </p>
+              <div class="alert alert-primary">
+                <h5>
+                  <i class="fas fa-terminal"></i> Shell
+                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
+                </h5>
+                <code>
+                  <input type="text" readonly class="form-control-plaintext" id="mac-homebrew" value="brew install zero-install">
+                </code>
               </div>
             </div>
             <div class="card-body tab-body" id="mac-prebuilt-tab">
@@ -217,20 +231,6 @@ eval $(opam config env)</textarea>
                 <code>
                   <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="mac-prebuilt">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
 ./0install.sh</textarea>
-                </code>
-              </div>
-            </div>
-            <div class="card-body tab-body" id="mac-homebrew-tab">
-              <p>
-                <a class="btn btn-primary" href="https://formulae.brew.sh/formula/zero-install">Formula</a>
-              </p>
-              <div class="alert alert-primary">
-                <h5>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
-                </h5>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext" id="mac-homebrew" value="brew install zero-install">
                 </code>
               </div>
             </div>
