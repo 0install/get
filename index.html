@@ -64,12 +64,12 @@
               <a href="https://docs.0install.net/details/linux/#generic-binaries">Learn more...</a>
               <hr>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
+                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" rows="2" id="linux-generic-shell">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
 ./0install.sh</textarea>
                 </code>
               </div>
@@ -79,34 +79,34 @@
                 <a class="btn btn-primary" href="apt://0install"><i class="fas fa-download"></i> Install</a>
               </p>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="linux-ubuntu" value="apt install 0install">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-ubuntu" value="apt install 0install">
                 </code>
               </div>
               <hr>
               <p>For headless/server installations (without GUI):</p>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu-headless');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu-headless');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="linux-ubuntu-headless" value="apt install 0install-core --no-install-recommends">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-ubuntu-headless" value="apt install 0install-core --no-install-recommends">
                 </code>
               </div>
             </div>
             <div class="card-body tab-body" id="linux-fedora-tab">
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-fedora-shell');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-fedora-shell');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="linux-fedora-shell" value="yum install 0install">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-fedora-shell" value="yum install 0install">
                 </code>
               </div>
             </div>
@@ -115,12 +115,12 @@
                 <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux</a> configured.
               </div>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-redhat-shell');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-redhat-shell');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="linux-redhat-shell" value="yum install zeroinstall-injector">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-redhat-shell" value="yum install zeroinstall-injector">
                 </code>
               </div>
             </div>
@@ -129,12 +129,12 @@
                 <a class="btn btn-primary" href="https://software.opensuse.org/ymp/openSUSE:Factory/standard/zeroinstall-injector.ymp?base=openSUSE%3AFactory&query=zeroinstall-injector"><i class="fas fa-download"></i> Install</a>
               </p>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-suse-shell');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-suse-shell');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="linux-suse-shell" value="zypper install zeroinstall-injector">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-suse-shell" value="zypper install zeroinstall-injector">
                 </code>
               </div>
             </div>
@@ -145,12 +145,12 @@
               <hr>
               <p>Build from source:</p>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('linux-arch-shell');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-arch-shell');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext" id="linux-arch-shell" rows="4">pacman -Sy opam make m4 patch unzip gcc sed awk grep diffutils curl pkg-config which
+                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" id="linux-arch-shell" rows="4">pacman -Sy opam make m4 patch unzip gcc sed awk grep diffutils curl pkg-config which
 opam init
 opam install 0install
 eval $(opam config env)</textarea>
@@ -176,12 +176,12 @@ eval $(opam config env)</textarea>
           <a href="https://docs.0install.net/details/windows/">Learn more...</a>
           <hr>
           <div class="alert alert-primary">
-            <h5>
+            <h6>
               <i class="fas fa-terminal"></i> PowerShell
-              <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('windows-powershell');"><i class="far fa-copy"></i></button>
-            </h5>
+              <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('windows-powershell');"><i class="far fa-copy"></i></button>
+            </h6>
             <code>
-              <input type="text" readonly class="form-control-plaintext" id="windows-powershell" value="winget install 0install">
+              <input type="text" readonly class="form-control-plaintext p-0" id="windows-powershell" value="winget install 0install">
             </code>
           </div>
           <small class="text-muted">This program uses free code signing provided by <a href="https://signpath.io/">SignPath.io</a> and a certificate by the <a href="https://signpath.org/">SignPath Foundation</a>. Signed releases are published by <a href="https://github.com/bastianeicher">Bastian Eicher</a>.</small>
@@ -200,12 +200,12 @@ eval $(opam config env)</textarea>
                 <a class="btn btn-primary" href="https://formulae.brew.sh/formula/zero-install">Formula</a>
               </p>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <input type="text" readonly class="form-control-plaintext" id="mac-homebrew" value="brew install zero-install">
+                  <input type="text" readonly class="form-control-plaintext p-0" id="mac-homebrew" value="brew install zero-install">
                 </code>
               </div>
             </div>
@@ -216,12 +216,12 @@ eval $(opam config env)</textarea>
               <a href="https://docs.0install.net/details/macos/">Learn more...</a>
               <hr>
               <div class="alert alert-primary">
-                <h5>
+                <h6>
                   <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link float-right" title="Copy to clipboard" onclick="copy('mac-prebuilt');"><i class="far fa-copy"></i></button>
-                </h5>
+                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('mac-prebuilt');"><i class="far fa-copy"></i></button>
+                </h6>
                 <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext" rows="2" id="mac-prebuilt">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
+                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" rows="2" id="mac-prebuilt">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
 ./0install.sh</textarea>
                 </code>
               </div>
