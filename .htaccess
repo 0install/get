@@ -2,7 +2,7 @@ RewriteEngine On
 RewriteBase /
 
 # Windows bootstrapper
-RewriteRule ^((0install|zero\-install)\.(zip|exe|msi))$ https://github.com/0install/0install-win/releases/download/2.26.7/$1 [R=302]
+RewriteRule ^((0install|zero\-install)\.(zip|exe|msi))$ https://github.com/0install/0install-win/releases/download/2.27.0/$1 [R=302]
 
 # Windows tarballs
 RewriteRule ^0install-win-([0-9\.]+)\.tar\.gz$ https://github.com/0install/0install-win/releases/download/$1/0install-win-$1.tar.gz [R=302]
