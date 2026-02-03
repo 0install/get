@@ -16,27 +16,31 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
-download() {
-    zeroinstall_release=0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}
-    download_dir=~/.cache/0install.net/$zeroinstall_release
+download_zeroinstall() {
+    zeroinstall_release="0install-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m)-${ZEROINSTALL_VERSION:-latest}"
+    dir="$HOME/.cache/0install.net/$zeroinstall_release"
 
-    if [ ! -f $download_dir/files/0install ]; then
+    if [ ! -f "$dir/files/0install" ]; then
         echo "Downloading 0install..." >&2
-        rm -rf $download_dir
-        mkdir -p $download_dir
-        curl -sSL https://get.0install.net/$zeroinstall_release.tar.bz2 | tar xj --strip-components 1 --directory $download_dir
+        rm -rf "$dir"
+        mkdir -p "$dir"
+        curl -fSL https://get.0install.net/$zeroinstall_release.tar.bz2 | tar xj --strip-components 1 --directory "$dir"
+    fi
+
+    echo "$dir"
+}
+
+run_zeroinstall() {
+    if command -v 0install >/dev/null 2>&1; then
+        0install "$@"
+    else
+        "$(download_zeroinstall)/files/0install" "$@"
     fi
 }
 
 if [ "$1" = "install" ]; then
-    download
     shift 1
-    $download_dir/install.sh "$@"
+    "$(download_zeroinstall)/install.sh" "$@"
 else
-    if command -v 0install > /dev/null 2> /dev/null; then
-        0install "$@"
-    else
-        download
-        $download_dir/files/0install "$@"
-    fi
+    run_zeroinstall "$@"
 fi
