@@ -3,250 +3,231 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
   <title>Zero Install: Get</title>
   <link rel="icon" href="https://0install.net/logo/favicon.ico" type="image/vnd.microsoft.icon" />
   <link rel="stylesheet" href="https://0install.net/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://0install.net/css/fontawesome.min.css">
-  <script src="https://0install.net/js/jquery.slim.min.js"></script>
-  <script src="https://0install.net/js/bootstrap.bundle.min.js"></script>
-  <script src="site.js"></script>
+  <link rel="stylesheet" href="https://0install.net/css/site.css">
+  <script src="https://0install.net/js/site.js"></script>
+  <script src="site.js" defer></script>
 </head>
 
 <body>
   <div class="container">
-    <nav class="navbar navbar-expand my-3">
-      <div class="media">
-        <a href="https://0install.net/"><img class="mr-2" src="https://0install.net/logo/zeroinstall-icon.png" width="64" height="64" alt="Zero Install Logo"></a>
-        <a class="navbar-brand text-dark media-body align-self-center" href="https://0install.net/">Zero Install</a>
-      </div>
-      <div class="nav nav-pills">
-        <a class="nav-item nav-link active" href="https://get.0install.net/">Get</a>
-        <a class="nav-item nav-link" href="https://apps.0install.net/">Apps</a>
-        <a class="nav-item nav-link" href="https://0install.net/support.html">Support</a>
-        <a class="nav-item nav-link" href="https://docs.0install.net/">Docs</a>
-      </div> 
-      <div class="nav ml-auto d-none d-md-block">
-        <a class="nav-item nav-link" href="https://github.com/0install/get"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-    </nav>
+    <header class="site-header d-flex flex-wrap align-items-center gap-3">
+      <a class="site-brand d-flex align-items-center gap-2 text-decoration-none" href="https://0install.net/">
+        <img src="https://0install.net/logo/zeroinstall-icon.png" width="40" height="40" alt="Zero Install Logo">
+        Zero Install
+      </a>
+      <nav class="nav site-nav">
+        <a class="nav-link active" href="https://get.0install.net/">Get</a>
+        <a class="nav-link" href="https://apps.0install.net/">Apps</a>
+        <a class="nav-link" href="https://0install.net/support.html">Support</a>
+        <a class="nav-link" href="https://docs.0install.net/">Docs</a>
+      </nav>
+      <nav class="nav site-nav ms-auto d-none d-md-flex">
+        <a class="nav-link" href="https://github.com/0install/get"><i class="fab fa-github"></i> GitHub</a>
+      </nav>
+    </header>
 
     <main>
       <p>Choose the platform for which you want to get Zero Install:</p>
 
-      <div class="card mb-4">
-        <div class="card-header">
-          <div class="nav nav-tabs card-header-tabs">
-            <a class="nav-item nav-link" href="#linux"><i class="fab fa-linux"></i> Linux</a>
-            <a class="nav-item nav-link" href="#windows"><i class="fab fa-windows"></i> Windows</a>
-            <a class="nav-item nav-link" href="#mac"><i class="fab fa-apple"></i> macOS</a>
-            <a class="nav-item nav-link" href="#other">Other</a>
+      <nav class="nav nav-underline mb-3">
+        <a class="nav-link" href="#linux"><i class="fab fa-linux"></i> Linux</a>
+        <a class="nav-link" href="#windows"><i class="fab fa-windows"></i> Windows</a>
+        <a class="nav-link" href="#mac"><i class="fab fa-apple"></i> macOS</a>
+        <a class="nav-link" href="#other">Other</a>
+      </nav>
+
+      <div class="tab-body" id="linux-tab">
+        <nav class="nav nav-pills mb-3">
+          <a class="nav-link" href="#linux-generic">Generic binaries</a>
+          <a class="nav-link" href="#linux-ubuntu"><i class="fab fa-ubuntu"></i> Ubuntu/Debian</a>
+          <a class="nav-link" href="#linux-fedora"><i class="fab fa-fedora"></i> Fedora</a>
+          <a class="nav-link" href="#linux-redhat"><i class="fab fa-redhat"></i> Red Hat</a>
+          <a class="nav-link" href="#linux-suse"><i class="fab fa-suse"></i> openSUSE</a>
+          <a class="nav-link" href="#linux-arch">Arch</a>
+        </nav>
+        <div class="tab-body" id="linux-generic-tab">
+          <p>
+            <a class="btn btn-primary" href="0install-linux-x86_64-latest.tar.bz2"><i class="fas fa-download"></i> Download</a>
+            <a class="btn btn-outline-primary" href="https://apps.0install.net/0install/0install-ocaml.xml"><i class="fas fa-history"></i> Specific version</a>
+          </p>
+          <p><a href="https://docs.0install.net/details/linux/#generic-binaries">Learn more...</a></p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
+            </div>
+            <code>
+              <textarea readonly class="form-control-plaintext" rows="2" id="linux-generic-shell">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
+./0install.sh</textarea>
+            </code>
           </div>
         </div>
-
-        <div class="card-body tab-body" id="linux-tab">
-          <div class="card">
-            <div class="card-header bg-white">
-              <div class="nav nav-tabs card-header-tabs">
-                <a class="nav-item nav-link" href="#linux-generic">Generic binaries</a>
-                <a class="nav-item nav-link" href="#linux-ubuntu"><i class="fab fa-ubuntu"></i> Ubuntu/Debian</a>
-                <a class="nav-item nav-link" href="#linux-fedora"><i class="fab fa-fedora"></i> Fedora</a>
-                <a class="nav-item nav-link" href="#linux-redhat"><i class="fab fa-redhat"></i> Red Hat</a>
-                <a class="nav-item nav-link" href="#linux-suse"><i class="fab fa-suse"></i> openSUSE</a>
-                <a class="nav-item nav-link" href="#linux-arch">Arch</a>
-              </div>
+        <div class="tab-body" id="linux-ubuntu-tab">
+          <p>
+            <a class="btn btn-primary" href="apt://0install"><i class="fas fa-download"></i> Install</a>
+          </p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-ubuntu');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-generic-tab">
-              <p>
-                <a class="btn btn-primary" href="0install-linux-x86_64-latest.tar.bz2"><i class="fas fa-download"></i> Download</a>
-                <a class="btn btn-outline-primary" href="https://apps.0install.net/0install/0install-ocaml.xml"><i class="fas fa-history"></i> Specific version</a>
-              </p>
-              <a href="https://docs.0install.net/details/linux/#generic-binaries">Learn more...</a>
-              <hr>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-generic-shell');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" rows="2" id="linux-generic-shell">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
-./0install.sh</textarea>
-                </code>
-              </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="linux-ubuntu" value="apt install 0install">
+            </code>
+          </div>
+          <p>For headless/server installations (without GUI):</p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-ubuntu-headless');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-ubuntu-tab">
-              <p>
-                <a class="btn btn-primary" href="apt://0install"><i class="fas fa-download"></i> Install</a>
-              </p>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-ubuntu" value="apt install 0install">
-                </code>
-              </div>
-              <hr>
-              <p>For headless/server installations (without GUI):</p>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-ubuntu-headless');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-ubuntu-headless" value="apt install 0install-core --no-install-recommends">
-                </code>
-              </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="linux-ubuntu-headless" value="apt install 0install-core --no-install-recommends">
+            </code>
+          </div>
+        </div>
+        <div class="tab-body" id="linux-fedora-tab">
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-fedora-shell');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-fedora-tab">
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-fedora-shell');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-fedora-shell" value="yum install 0install">
-                </code>
-              </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="linux-fedora-shell" value="yum install 0install">
+            </code>
+          </div>
+        </div>
+        <div class="tab-body" id="linux-redhat-tab">
+          <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux</a> configured.
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-redhat-shell');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-redhat-tab">
-              <div class="alert alert-warning">
-                <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux</a> configured.
-              </div>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-redhat-shell');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-redhat-shell" value="yum install zeroinstall-injector">
-                </code>
-              </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="linux-redhat-shell" value="yum install zeroinstall-injector">
+            </code>
+          </div>
+        </div>
+        <div class="tab-body" id="linux-suse-tab">
+          <p>
+            <a class="btn btn-primary" href="https://software.opensuse.org/ymp/openSUSE:Factory/standard/zeroinstall-injector.ymp?base=openSUSE%3AFactory&query=zeroinstall-injector"><i class="fas fa-download"></i> Install</a>
+          </p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-suse-shell');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-suse-tab">
-              <p>
-                <a class="btn btn-primary" href="https://software.opensuse.org/ymp/openSUSE:Factory/standard/zeroinstall-injector.ymp?base=openSUSE%3AFactory&query=zeroinstall-injector"><i class="fas fa-download"></i> Install</a>
-              </p>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-suse-shell');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="linux-suse-shell" value="zypper install zeroinstall-injector">
-                </code>
-              </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="linux-suse-shell" value="zypper install zeroinstall-injector">
+            </code>
+          </div>
+        </div>
+        <div class="tab-body" id="linux-arch-tab">
+          <p>
+            <a class="btn btn-primary" href="https://aur.archlinux.org/packages/zeroinstall-injector/"><i class="fas fa-download"></i> AUR package</a>
+          </p>
+          <p>Build from source:</p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('linux-arch-shell');"><i class="far fa-copy"></i></button>
             </div>
-            <div class="card-body tab-body" id="linux-arch-tab">
-              <p>
-                <a class="btn btn-primary" href="https://aur.archlinux.org/packages/zeroinstall-injector/"><i class="fas fa-download"></i> AUR package</a>
-              </p>
-              <hr>
-              <p>Build from source:</p>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('linux-arch-shell');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" id="linux-arch-shell" rows="4">pacman -Sy opam make m4 patch unzip gcc sed awk grep diffutils curl pkg-config which
+            <code>
+              <textarea readonly class="form-control-plaintext" id="linux-arch-shell" rows="4">pacman -Sy opam make m4 patch unzip gcc sed awk grep diffutils curl pkg-config which
 opam init
 opam install 0install
 eval $(opam config env)</textarea>
-                </code>
-              </div>
-              <a href="https://docs.0install.net/details/linux/#from-source">Learn more...</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-body tab-body" id="windows-tab">
-          <div class="alert alert-warning" id="windows-tls-notice">
-            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://support.microsoft.com/en-us/help/3140245/">TLS 1.2 support</a> installed.
-          </div>
-          <div class="alert alert-warning" id="windows-netframework-notice">
-            <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework 4.8 or newer</a> installed.
-          </div>
-          <p>
-            <a class="btn btn-primary" href="zero-install.exe"><i class="fas fa-download"></i> Download</a>
-            <a class="btn btn-outline-primary" href="zero-install.zip"><i class="fa-solid fa-file-zipper"></i> ZIP version</a>
-            <a class="btn btn-outline-primary" href="zero-install.msi"><i class="fa-brands fa-microsoft"></i> MSI version</a>
-          </p>
-          <a href="https://docs.0install.net/details/windows/">Learn more...</a>
-          <hr>
-          <div class="alert alert-primary">
-            <h6>
-              <i class="fas fa-terminal"></i> PowerShell
-              <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('windows-powershell');"><i class="far fa-copy"></i></button>
-            </h6>
-            <code>
-              <input type="text" readonly class="form-control-plaintext p-0" id="windows-powershell" value="winget install 0install">
             </code>
           </div>
-          <small class="text-muted">This program uses free code signing provided by <a href="https://signpath.io/">SignPath.io</a> and a certificate by the <a href="https://signpath.org/">SignPath Foundation</a>. Signed releases are published by <a href="https://github.com/bastianeicher">Bastian Eicher</a>.</small>
-        </div>
-
-        <div class="card-body tab-body" id="mac-tab">
-          <div class="card">
-            <div class="card-header bg-white">
-              <div class="nav nav-tabs card-header-tabs">
-                <a class="nav-item nav-link" href="#mac-homebrew"><i class="fa fa-beer"></i> Homebrew</a>
-                <a class="nav-item nav-link" href="#mac-prebuilt">Pre-built binaries</a>
-              </div>
-            </div>
-            <div class="card-body tab-body" id="mac-homebrew-tab">
-              <p>
-                <a class="btn btn-primary" href="https://formulae.brew.sh/formula/zero-install">Formula</a>
-              </p>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <input type="text" readonly class="form-control-plaintext p-0" id="mac-homebrew" value="brew install zero-install">
-                </code>
-              </div>
-            </div>
-            <div class="card-body tab-body" id="mac-prebuilt-tab">
-              <p>
-                <a class="btn btn-primary" href="0install-darwin-x86_64-latest.tar.bz2"><i class="fas fa-download"></i> Download</a>
-              </p>
-              <a href="https://docs.0install.net/details/macos/">Learn more...</a>
-              <hr>
-              <div class="alert alert-primary">
-                <h6>
-                  <i class="fas fa-terminal"></i> Shell
-                  <button type="button" class="btn btn-link p-0 float-right" title="Copy to clipboard" onclick="copy('mac-prebuilt');"><i class="far fa-copy"></i></button>
-                </h6>
-                <code>
-                  <textarea readonly style="resize: none;" class="form-control-plaintext p-0" rows="2" id="mac-prebuilt">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
-./0install.sh</textarea>
-                </code>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-body tab-body" id="other-tab">
-          <p>Zero Install can be built from source and run on most Unixoid operating systems (e.g., FreeBSD and Solaris) using the same steps as on Linux.</p>
-          <a href="https://docs.0install.net/details/linux/#from-source">Learn more...</a>
+          <p><a href="https://docs.0install.net/details/linux/#from-source">Learn more...</a></p>
         </div>
       </div>
 
-      <small class="text-muted">
+      <div class="tab-body" id="windows-tab">
+        <div class="alert alert-warning" id="windows-tls-notice">
+          <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://support.microsoft.com/en-us/help/3140245/">TLS 1.2 support</a> installed.
+        </div>
+        <div class="alert alert-warning" id="windows-netframework-notice">
+          <i class="fas fa-exclamation-triangle"></i> Make sure you have <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework 4.8 or newer</a> installed.
+        </div>
+        <p>
+          <a class="btn btn-primary" href="zero-install.exe"><i class="fas fa-download"></i> Download</a>
+          <a class="btn btn-outline-primary" href="zero-install.zip"><i class="fa-solid fa-file-zipper"></i> ZIP version</a>
+          <a class="btn btn-outline-primary" href="zero-install.msi"><i class="fa-brands fa-microsoft"></i> MSI version</a>
+        </p>
+        <p><a href="https://docs.0install.net/details/windows/">Learn more...</a></p>
+        <div class="terminal">
+          <div class="terminal-header">
+            <span><i class="fas fa-terminal"></i> PowerShell</span>
+            <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('windows-powershell');"><i class="far fa-copy"></i></button>
+          </div>
+          <code>
+            <input type="text" readonly class="form-control-plaintext" id="windows-powershell" value="winget install 0install">
+          </code>
+        </div>
+        <small class="text-body-secondary">This program uses free code signing provided by <a href="https://signpath.io/">SignPath.io</a> and a certificate by the <a href="https://signpath.org/">SignPath Foundation</a>. Signed releases are published by <a href="https://github.com/bastianeicher">Bastian Eicher</a>.</small>
+      </div>
+
+      <div class="tab-body" id="mac-tab">
+        <nav class="nav nav-pills mb-3">
+          <a class="nav-link" href="#mac-homebrew"><i class="fa fa-beer"></i> Homebrew</a>
+          <a class="nav-link" href="#mac-prebuilt">Pre-built binaries</a>
+        </nav>
+        <div class="tab-body" id="mac-homebrew-tab">
+          <p>
+            <a class="btn btn-primary" href="https://formulae.brew.sh/formula/zero-install">Formula</a>
+          </p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('mac-homebrew');"><i class="far fa-copy"></i></button>
+            </div>
+            <code>
+              <input type="text" readonly class="form-control-plaintext" id="mac-homebrew" value="brew install zero-install">
+            </code>
+          </div>
+        </div>
+        <div class="tab-body" id="mac-prebuilt-tab">
+          <p>
+            <a class="btn btn-primary" href="0install-darwin-x86_64-latest.tar.bz2"><i class="fas fa-download"></i> Download</a>
+          </p>
+          <p><a href="https://docs.0install.net/details/macos/">Learn more...</a></p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span><i class="fas fa-terminal"></i> Shell</span>
+              <button type="button" class="terminal-copy" title="Copy to clipboard" onclick="copy('mac-prebuilt');"><i class="far fa-copy"></i></button>
+            </div>
+            <code>
+              <textarea readonly class="form-control-plaintext" rows="2" id="mac-prebuilt">curl -O https://get.0install.net/0install.sh && chmod +x 0install.sh
+./0install.sh</textarea>
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-body" id="other-tab">
+        <p>Zero Install can be built from source and run on most Unixoid operating systems (e.g., FreeBSD and Solaris) using the same steps as on Linux.</p>
+        <p><a href="https://docs.0install.net/details/linux/#from-source">Learn more...</a></p>
+      </div>
+
+      <small class="text-body-secondary d-block mt-4">
         <p>Released under the GNU Lesser General Public License.</p>
         <p><strong>Privacy notes:</strong> Zero Install contacts various servers automatically during normal operation (e.g., to check for updates). No personal information is transmitted to these systems unless specifically requested by the user (e.g., to synchronize apps between computers). See the <a href="https://docs.0install.net/details/servers/">documentation</a> for details.</p>
       </small>
     </main>
 
-    <footer>
-      <hr>
-      <small class="text-muted">
-        © Copyright 2003-2024 Thomas Leonard, Bastian Eicher and others<br>
-        Permission is granted to use the site (excluding the software, which is licensed separately) in accordance with the terms of the <a href="https://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-ShareAlike 2.5 license</a>.
-      </small>
+    <footer class="site-footer">
+      © Copyright 2003-2026 Thomas Leonard, Bastian Eicher and others<br>
+      Permission is granted to use the site (excluding the software, which is licensed separately) in accordance with the terms of the <a href="https://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-ShareAlike 2.5 license</a>.
     </footer>
   </div>
 </body>
