@@ -14,26 +14,11 @@ function detectOS() {
     return null;
 }
 
-function updateTabs() {
-    hideTabs();
-
-    var tabName;
-    if (window.location.hash) {
-        tabName = window.location.hash.slice(1);
-        if (tabName == 'linux') { tabName = 'linux-generic'; }
-        if (tabName == 'mac') { tabName = 'mac-homebrew'; }
-    } else {
-        tabName = detectOS();
-        if (tabName == null) return;
-    }
-    history.replaceState({}, '', '#' + tabName);
-
-    showTab(tabName.split('-')[0]);
-    showTab(tabName);
+// Runs before the tabs from https://0install.net/js/site.js initialize, which then pick up the hash
+if (!window.location.hash) {
+    var os = detectOS();
+    if (os) { history.replaceState(null, '', '#' + os); }
 }
-
-addEventListener('hashchange', updateTabs);
-updateTabs();
 
 if (is('Windows NT 6.2') || is('Windows NT 6.3') || is('Windows NT 10.0')) {
     document.getElementById('windows-tls-notice').hidden = true;
