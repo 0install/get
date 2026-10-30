@@ -30,8 +30,8 @@ if [ -d "$CONTENT_DIR" ]; then
 fi
 
 if [ -n "$DISPLAY" ]; then
-    0desktop $APP_URI
+    0desktop "$APP_URI"
 else
-    0install add $APP_ALIAS $APP_URI
+    0install add "$APP_ALIAS" "$APP_URI"
     echo "Created command-line alias '$APP_ALIAS'. Can be removed with '0install destroy $APP_ALIAS'."
 fi
