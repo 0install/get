@@ -15,6 +15,7 @@ $app_uri = $_GET['uri'];
 if (strlen($app_uri) == 0) die("uri is missing!");
 if (!filter_var($app_uri, FILTER_VALIDATE_URL)) die("uri is invalid: $app_uri");
 $app_integrate = ($_GET['mode'] == 'integrate');
+$app_mode = $app_integrate ? 'integrate' : 'run';
 
 // Detect platform
 if (!empty($_GET['platform'])) $platform = $_GET['platform'];
